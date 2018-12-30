@@ -41,6 +41,11 @@ module Lita
           Lita.logger.debug("Getting #{get_url}")
         end
 
+        unless get_url
+          response.reply "#{title} not found, did you try typing it in as it was at the theatres?  e.g. 'Blade Runner'"
+          return
+        end
+
         begin
           r = RestClient.get(get_url)
           noko_doc = Nokogiri::HTML(r)
