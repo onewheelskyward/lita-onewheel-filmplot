@@ -17,7 +17,7 @@ module Lita
             command: true
 
       def get_plot(response)
-        movie_slug = response.matches[0][0]
+        movie_slug = response.matches[0][0].gsub ' ', '_'
         begin
           r = RestClient.get("https://www.rottentomatoes.com/m/#{movie_slug}")
           noko_doc = Nokogiri::HTML(r)
